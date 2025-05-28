@@ -320,20 +320,9 @@
                 <div class="col-md-6">
                     <div class="waiting-time-card">
                         <h2 class="mb-4">現在の待ち時間</h2>
-                        <div class="waiting-time-number"><span id="count">取得中...</span>
-                            <script>
-                              fetch('https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token')
-                                .then(response => response.json())
-                                .then(data => {
-                                  document.getElementById('count').textContent = data.waitCount + '人';
-                                })
-                                .catch(() => {
-                                  document.getElementById('count').textContent = 'エラー';
-                                });
-                            </script>
-                        </div>
-                        <div class="waiting-time-status">比較的空いています</div>
-                        <div class="waiting-time-update">最終更新: 2024年3月21日 15:30</div>
+                        <div class="waiting-time-number"><span id="count">取得中...</span></div>
+                        <div class="waiting-time-status" id="status">比較的空いています</div>
+                        <div class="waiting-time-update" id="update-time">最終更新: 2024年3月21日 15:30</div>
                         <div class="mt-4">
                             <button class="btn btn-outline-primary" onclick="updateWaitingTime()">
                                 更新する
@@ -478,9 +467,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     function updateWaitingTime() {
-        // ここに待ち時間更新のロジックを実装
-        alert('待ち時間を更新しました');
+        const countElement = document.getElementById('count');
+        const statusElement = document.getElementById('status');
+        const updateTimeElement = document.getElementById('update-time');
+        
+        // 更新中の表示
+        countElement.textContent = '更新中...';
+        
+        // APIからデータを取得
+        fetch('https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token')
+            .then(response => response.json())
+            .then(data => {
+                countElement.textContent = data.waitCount + '人';
+                
+                // 現在時刻を更新
+                const now = new Date();
+                const formattedDate = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                updateTimeElement.textContent = `最終更新: ${formattedDate}`;
+            })
+            .catch(() => {
+                countElement.textContent = 'エラー';
+            });
     }
+
+    // ページ読み込み時に初期データを取得
+    document.addEventListener('DOMContentLoaded', updateWaitingTime);
     </script>
 </body>
 </html>
