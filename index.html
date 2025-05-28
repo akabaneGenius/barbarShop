@@ -225,6 +225,17 @@
             font-weight: bold;
             color: #007bff;
             margin: 1rem 0;
+            line-height: 1.2;
+        }
+        .waiting-time-number .minutes {
+            display: block;
+            font-size: 3.5rem;
+        }
+        .waiting-time-number .people {
+            display: block;
+            font-size: 2rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
         }
         .waiting-time-status {
             font-size: 1.2rem;
@@ -236,12 +247,109 @@
             color: #6c757d;
         }
         @media (max-width: 768px) {
-            .waiting-time-number {
+            .waiting-time-number .minutes {
                 font-size: 2.5rem;
             }
-            .waiting-time-status {
+            .waiting-time-number .people {
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 390px) {
+            .waiting-time-number .minutes {
+                font-size: 2rem;
+            }
+            .waiting-time-number .people {
+                font-size: 1.2rem;
+            }
+        }
+        .payment-description {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .payment-description p {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .payment-description p {
                 font-size: 1.1rem;
             }
+        }
+        @media (max-width: 390px) {
+            .payment-description p {
+                font-size: 1rem;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        body {
+            padding-top: 0; /* 既存のpadding-topを削除 */
+        }
+        .access-info {
+            background: #f8f9fa;
+            padding: 2rem 0;
+        }
+        .access-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        .access-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #007bff;
+        }
+        .access-detail {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .access-detail i {
+            margin-right: 0.5rem;
+            color: #007bff;
+        }
+        .news-section {
+            background: #fff;
+            padding: 2rem 0;
+        }
+        .news-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .news-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .modal-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -259,10 +367,10 @@
                         <a class="nav-link" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#waiting">Wait time</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#waiting">待ち時間</a>
+                        <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -333,6 +441,36 @@
             </div>
         </div>
     </section>
+
+    <!-- News Section -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <h2 class="text-center mb-5">お知らせ</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="news-card" data-bs-toggle="modal" data-bs-target="#newsModal2">
+                        <div class="news-date">2025年5月1日</div>
+                        <div class="news-title">5月のお休みのお知らせ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Modals -->
+    <div class="modal fade" id="newsModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">5月のお休みのお知らせ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./images/calendar.png" alt="営業時間" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section id="services" class="section-spacing">
@@ -422,6 +560,10 @@
         <div class="container">
             <h2 class="text-center mb-5">お支払い方法</h2>
             <div class="row justify-content-center">
+                <div class="payment-description">
+                    <p>現金はもちろんクレジットカードも</p>
+                    <p>ご利用いただけます！</p>
+                </div>
                 <div class="col-md-8">
                     <div class="payment-methods-container d-flex justify-content-around flex-wrap">
                         <div class="payment-method-item text-center mb-4">
@@ -439,19 +581,48 @@
         </div>
     </section>
 
+    <!-- Access Section -->
+    <section id="access" class="access-info">
+        <div class="container">
+            <h2 class="text-center mb-5">アクセス</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="access-card">
+                        <div class="access-title">住所</div>
+                        <p class="access-detail">北海道江別市大麻ひかり町44-15</p>
+                    </div>
+
+                    <div class="access-card">
+                        <div class="access-title">アクセス</div>
+                        <p class="access-detail">厚別通り沿い らぁめん銀波露さん横</p>
+                    </div>
+                    
+                    <div class="access-card">
+                        <div class="access-title">最寄駅</div>
+                        <p class="access-detail">大麻駅から1.2km （徒歩16分）</p>
+                        <p class="access-detail">森林公園駅(北海道)から1.5km （徒歩19分）</p>
+                    </div>
+
+                    <div class="access-card">
+                        <div class="access-title">バス停</div>
+                        <p class="access-detail">3番通16丁目から160m （徒歩3分）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section-spacing">
         <div class="container">
             <h2 class="text-center mb-4">店舗情報</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-
                     <div class="text-center">
                         <p><strong>住所:</strong>北海道江別市大麻ひかり町４４−１５</p>
                         <p><strong>電話番号:</strong>011-387-1938</p>
                         <p><strong>メールアドレス:</strong> info@barbershop.com</p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -466,32 +637,91 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    function updateWaitingTime() {
-        const countElement = document.getElementById('count');
-        const statusElement = document.getElementById('status');
-        const updateTimeElement = document.getElementById('update-time');
-        
-        // 更新中の表示
-        countElement.textContent = '更新中...';
-        
-        // APIからデータを取得
-        fetch('https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token')
-            .then(response => response.json())
-            .then(data => {
-                countElement.textContent = data.waitCount + '人';
-                
-                // 現在時刻を更新
-                const now = new Date();
-                const formattedDate = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
-                updateTimeElement.textContent = `最終更新: ${formattedDate}`;
-            })
-            .catch(() => {
-                countElement.textContent = 'エラー';
-            });
-    }
+        // スムーズスクロールの関数
+        function smoothScrollTo(targetId) {
+            const targetElement = document.getElementById(targetId);
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const scrollPosition = targetPosition - (windowHeight / 2) + (targetElement.offsetHeight / 2) - navbarHeight;
 
-    // ページ読み込み時に初期データを取得
-    document.addEventListener('DOMContentLoaded', updateWaitingTime);
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // 既存のupdateWaitingTime関数
+        function updateWaitingTime() {
+            const countElement = document.getElementById('count');
+            const statusElement = document.getElementById('status');
+            const updateTimeElement = document.getElementById('update-time');
+            
+            // 更新中の表示
+            countElement.innerHTML = '<span class="minutes">更新中...</span>';
+            
+            // APIからデータを取得
+            const apiUrl = 'https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const waitCount = data.waitCount || 0;
+                    const waitMinutes = waitCount * 10; // 1人あたり15分として計算
+                    
+                    // 待ち時間の表示を更新
+                    countElement.innerHTML = `
+                        <span class="minutes">${waitMinutes}分</span>
+                        <span class="people">${waitCount}人待ち</span>
+                    `;
+                    
+                    // 混雑状況の表示を更新
+                    if (waitCount === 0) {
+                        statusElement.textContent = '空いています';
+                        statusElement.style.color = '#28a745'; // 緑色
+                    } else if (waitCount <= 3) {
+                        statusElement.textContent = '比較的空いています';
+                        statusElement.style.color = '#28a745'; // 緑色
+                    } else if (waitCount <= 6) {
+                        statusElement.textContent = 'やや混雑しています';
+                        statusElement.style.color = '#ffc107'; // 黄色
+                    } else {
+                        statusElement.textContent = '混雑しています';
+                        statusElement.style.color = '#dc3545'; // 赤色
+                    }
+                    
+                    // 現在時刻を更新
+                    const now = new Date();
+                    const formattedDate = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                    updateTimeElement.textContent = `最終更新: ${formattedDate}`;
+                })
+                .catch(error => {
+                    countElement.innerHTML = '<span class="minutes">取得に失敗しました</span>';
+                    statusElement.textContent = '情報を取得できません';
+                    statusElement.style.color = '#6c757d'; // グレー
+                    console.error('API取得エラー:', error);
+                });
+        }
+
+        // ページ読み込み時の初期データ取得
+        document.addEventListener('DOMContentLoaded', updateWaitingTime);
+
+        // ナビゲーションリンクのイベントリスナーを設定
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                smoothScrollTo(targetId);
+            });
+        });
+
+        // 待ち時間確認ボタンのイベントリスナーを設定
+        document.querySelectorAll('a[href="#waiting"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                smoothScrollTo('waiting');
+            });
+        });
     </script>
 </body>
 </html>
