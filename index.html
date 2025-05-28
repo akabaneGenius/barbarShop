@@ -52,6 +52,12 @@
             margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+        .carousel-caption h1 .shop-name {
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 0.3rem;
         }
         .carousel-caption p {
             font-size: 1.3rem;
@@ -113,8 +119,11 @@
         }
         @media (max-width: 768px) {
             .carousel-caption h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
                 line-height: 1.3;
+            }
+            .carousel-caption h1 .shop-name {
+                font-size: 1.5rem;
             }
             .carousel-caption {
                 padding: 1rem;
@@ -146,9 +155,40 @@
                 padding: 1.5rem 0;
             }
         }
+        @media (max-width: 390px) {
+            .carousel-caption h1 {
+                font-size: 1.5rem;
+                letter-spacing: 0.3px;
+            }
+            .carousel-caption h1 .shop-name {
+                font-size: 1.3rem;
+            }
+            .carousel-caption {
+                padding: 0.8rem;
+                width: 95%;
+            }
+            .hero-info {
+                padding: 0.8rem;
+                margin: 0.3rem;
+            }
+            .hero-info p {
+                font-size: 0.9rem;
+                margin-bottom: 0.2rem;
+            }
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem !important;
+            }
+        }
         @media (max-width: 375px) {
             .carousel-caption h1 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+            }
+            .carousel-caption h1 .shop-name {
+                font-size: 1.2rem;
             }
             .carousel-caption {
                 padding: 0.8rem;
@@ -243,14 +283,14 @@
                 <div class="carousel-item active">
                     <img src="./images/shop-front.png" class="d-block w-100" alt="店舗外観" style="height: 400px; object-fit: cover;">
                     <div class="carousel-caption">
-                        <h1>理容のディスカウント厚別通り店</h1>
+                        <h1>理容のディスカウント<br><span class="shop-name">厚別通り店</span></h1>
                         <a href="#waiting" class="btn btn-primary">待ち時間を確認する</a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="./images/shop-interior.png" class="d-block w-100" alt="店内" style="height: 400px; object-fit: cover;">
                     <div class="carousel-caption">
-                        <h1>理容のディスカウント厚別通り店</h1>
+                        <h1>理容のディスカウント<br><span class="shop-name">厚別通り店</span></h1>
                         <a href="#waiting" class="btn btn-primary">待ち時間を確認する</a>
                     </div>
                 </div>
@@ -280,7 +320,18 @@
                 <div class="col-md-6">
                     <div class="waiting-time-card">
                         <h2 class="mb-4">現在の待ち時間</h2>
-                        <div class="waiting-time-number">約15分</div>
+                        <div class="waiting-time-number"><span id="count">取得中...</span>
+                            <script>
+                              fetch('https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token')
+                                .then(response => response.json())
+                                .then(data => {
+                                  document.getElementById('count').textContent = data.waitCount + '人';
+                                })
+                                .catch(() => {
+                                  document.getElementById('count').textContent = 'エラー';
+                                });
+                            </script>
+                        </div>
                         <div class="waiting-time-status">比較的空いています</div>
                         <div class="waiting-time-update">最終更新: 2024年3月21日 15:30</div>
                         <div class="mt-4">
