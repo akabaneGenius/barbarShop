@@ -661,7 +661,7 @@
             countElement.innerHTML = '<span class="minutes">更新中...</span>';
             
             // APIからデータを取得
-            const apiUrl = 'https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?key=my_secret_token';
+            const apiUrl = 'https://script.google.com/macros/s/AKfycbzHb5b6ORzMqvKkCW73rr7tvHKIghL-c46cTyBVKlUYh7MAz2v7tfoDmkrCbzxAvV9ekg/exec?action=wait';
 
             fetch(apiUrl)
                 .then(response => response.json())
